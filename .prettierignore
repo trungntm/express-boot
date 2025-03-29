@@ -1,0 +1,22 @@
+# Build outputs
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Coverage reports
+coverage/
+
+# Package manager files
+yarn.lock
+package-lock.json
+
+# Generated files
+*.generated.ts
+*.generated.js
+
+# Other
+.git/
+.vscode/
+.idea/ 
