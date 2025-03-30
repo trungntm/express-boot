@@ -8,7 +8,7 @@ import {
   DeleteMapping,
   PatchMapping,
 } from './web/annotation';
-import { Container } from 'typedi';
+import { Container, Service } from '@express-boot/starter-core';
 import { registerRoutes } from './web/handler/route-handler';
 
 import { createExpress } from './express/create-express';
@@ -17,6 +17,7 @@ export type { Express };
 
 export {
   Container,
+  Service,
   GetMapping,
   PostMapping,
   PutMapping,

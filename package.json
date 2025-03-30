@@ -15,8 +15,6 @@
     "format": "prettier --write \"**/*.{ts,json,md}\""
   },
   "dependencies": {
-    "typedi": "^0.10.0",
-    "reflect-metadata": "^0.2.1"
   },
   "devDependencies": {
     "typescript": "^5.3.3",

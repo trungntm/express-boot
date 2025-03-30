@@ -1,0 +1,5 @@
+class ExpressApplication {
+  static run() {
+    
+  }
+}

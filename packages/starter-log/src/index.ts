@@ -1,4 +1,4 @@
-import { Signale } from 'signale'
+import { Signale } from 'signale';
 
 const dfOptions = {
   disabled: false,
@@ -8,22 +8,22 @@ const dfOptions = {
   config: {
     displayDate: true,
     displayTimestamp: true,
-    uppercaseLabel: true
+    uppercaseLabel: true,
   },
   types: {
     remind: {
       badge: '**',
       color: 'yellow',
-      label: 'reminder'
+      label: 'reminder',
     },
     santa: {
       badge: '🎅',
       color: 'red',
-      label: 'santa'
-    }
-  }
-}
+      label: 'santa',
+    },
+  },
+};
 
-const log = new Signale(dfOptions)
+const log = new Signale(dfOptions);
 
-export { log }
+export { log };
