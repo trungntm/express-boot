@@ -1,5 +1,5 @@
 {
-  "name": "@express-boot/starter-web",
+  "name": "@express-boot/starter-swagger",
   "version": "1.0.0",
   "private": true,
   "main": "dist/index.js",
@@ -10,16 +10,11 @@
   },
   "dependencies": {
     "@express-boot/starter-core": "0.0.1",
-    "express": "^4.18.2",
-    "typedi": "^0.10.0",
-    "reflect-metadata": "^0.2.1",
-    "http-status": "^1.7.4",
-    "compression": "^1.8.0",
-    "cors":"^2.8.5"
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/cors": "^2.8.17",
+    "@types/swagger-ui-express": "^4.1.7",
     "@types/jest": "^29.5.12",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.2"

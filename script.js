@@ -11,4 +11,4 @@ const buildPackages = (packages) => {
   console.log("✅ Build completed successfully!");
 }
 
-buildPackages(['starter-core', 'starter-log', 'starter-web'])
+buildPackages(['starter-log', 'starter-core', 'starter-web', 'starter-swagger'])
