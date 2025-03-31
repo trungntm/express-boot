@@ -9,52 +9,45 @@ export class ConfigurationBinder {
   }
 
   private static toCamelCase(str: string): string {
-    return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+    return str.replace(/-([a-z])/g, g => g[1].toUpperCase());
+  }
+
+  private static bindNestedProperties(
+    instance: any,
+    prefix: string,
+    environment: Environment
+  ): void {
+    const keys = Object.keys(instance);
+
+    for (const key of keys) {
+      const type = Reflect.getMetadata('design:type', instance, key);
+
+      const kebabKey = this.toKebabCase(key);
+      const camelKey = this.toCamelCase(kebabKey);
+
+      const configKeyKebab = prefix ? `${prefix}.${kebabKey}` : kebabKey;
+      const configKeyCamel = prefix ? `${prefix}.${camelKey}` : camelKey;
+
+      const value =
+        environment.getProperty(configKeyKebab) || environment.getProperty(configKeyCamel);
+      if (value !== undefined) {
+        instance[key] = TypeConverter.convert(value, type);
+      } else if (type && typeof type === 'function' && type.prototype) {
+        // Handle nested objects
+        if (!instance[key]) {
+          instance[key] = new type();
+        }
+        this.bindNestedProperties(instance[key], configKeyKebab, environment);
+      }
+    }
   }
 
   static bind<T extends object>(target: new () => T, environment: Environment): T {
     const instance = new target();
     const prefix = Reflect.getMetadata(CONFIG_PREFIX_KEY, target) || '';
 
-    // // Get all properties from the class
-    // const propertyNames = Object.getOwnPropertyNames(target.prototype);
-    // console.log('class propertyNames', propertyNames);
+    this.bindNestedProperties(instance, prefix, environment);
 
-    // Get all properties from the instance
-    const instancePropertyNames = Object.keys(instance);
-    
-    // Try to get type metadata from the class
-    for (const propertyKey of instancePropertyNames) {
-      const type = Reflect.getMetadata('design:type', instance, propertyKey);
-
-      // Try both kebab-case and camelCase versions of the property key
-      const kebabKey = this.toKebabCase(propertyKey);
-      const camelKey = this.toCamelCase(kebabKey);
-      
-      // Try both formats in the configuration
-      const configKeyKebab = prefix ? `${prefix}.${kebabKey}` : kebabKey;
-      const configKeyCamel = prefix ? `${prefix}.${camelKey}` : camelKey;
-      
-      const value = environment.getProperty(configKeyKebab) || environment.getProperty(configKeyCamel);
-      
-      if (value !== undefined) {
-        (instance as any)[propertyKey] = TypeConverter.convert(value, type);
-
-        Object.defineProperty(target, propertyKey, {
-          get: function () {
-            return value;
-          },
-          set: function (newValue: any) {
-            // Note: Setting the value won't affect the environment
-            // This is just to maintain property accessor pattern
-            this[`_${propertyKey}`] = newValue;
-          },
-          enumerable: true,
-          configurable: true,
-        });
-      }
-    }
-    
     return instance;
   }
 }

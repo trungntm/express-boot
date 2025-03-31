@@ -1,10 +1,13 @@
 import { createExpress, Express, registerRoutes } from '@express-boot/starter-web';
 import { log } from '@express-boot/starter-log';
 import HelloController from './HelloController';
+// import { AppConfig } from './app-config';
+import {
+  // autoBindConfigurations,
+  // getBoundConfiguration,
+  StandardEnvironment,
+} from '@express-boot/starter-core';
 // import { ServerProperties } from './server-properties';
-import { ConfigurationBinder, StandardEnvironment } from '@express-boot/starter-core';
-import { ServerProperties } from './server-properties';
-// import { ConfigurationBinder } from '@express-boot/starter-core';
 
 const app: Express = createExpress();
 
@@ -19,13 +22,14 @@ environment.setActiveProfiles(['development']);
 environment.load();
 console.log('Environment created');
 
-const serverProperties = ConfigurationBinder.bind(ServerProperties, environment);
-// const serverProperties = new ServerProperties();
-console.log('Server properties bound:', serverProperties);
+// autoBindConfigurations(environment);
 
-const port = serverProperties.port;
-console.log('Port value:', port);
+// const serverProperties = getBoundConfiguration(ServerProperties);
+// console.log('Server properties bound:', serverProperties);
 
-app.listen(serverProperties.port, () => {
+// const appConfig = getBoundConfiguration(AppConfig);
+// console.log('App config bound:', Container.get(ServerProperties));
+
+app.listen(8080, () => {
   log.info('App start');
 });

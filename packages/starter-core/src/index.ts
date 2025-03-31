@@ -6,3 +6,6 @@ export * from './types/type-converter';
 
 export { ConfigurationBinder } from './env/configuration-binder';
 export * from './env/annotation';
+
+export * from './properties';
+// export { getBoundConfiguration, autoBindConfigurations } from './env/auto-bind';

@@ -4,7 +4,7 @@ import { CONFIG_PREFIX_KEY } from './index';
 export function getConfigurationServices(): any[] {
   // Get all services from the container
   const services = Container.getMany('*');
-  
+
   // Filter services that have ConfigurationProperties metadata
   return services.filter(service => {
     const constructor = Object.getPrototypeOf(service).constructor;
@@ -18,4 +18,4 @@ export function getConfigurationService<T>(constructor: new (...args: any[]) => 
 
 export function getConfigurationPrefix(constructor: any): string {
   return Reflect.getMetadata(CONFIG_PREFIX_KEY, constructor) || '';
-} 
+}

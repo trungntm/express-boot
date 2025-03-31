@@ -9,8 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@express-boot/starter-web": "1.0.0",
-    "@express-boot/starter-log": "1.0.0"
+    "@express-boot/starter-web": "1.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

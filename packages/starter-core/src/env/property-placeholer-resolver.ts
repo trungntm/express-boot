@@ -4,7 +4,7 @@ export class PropertyPlaceholderResolver {
   static resolve(value: string, propertyGetter: (key: string) => any): string {
     return value.replace(this.PLACEHOLDER_PATTERN, (match, key, defaultValue) => {
       const resolvedValue = propertyGetter(key);
-      return resolvedValue !== undefined ? resolvedValue : (defaultValue || match);
+      return resolvedValue !== undefined ? resolvedValue : defaultValue || match;
     });
   }
 }
