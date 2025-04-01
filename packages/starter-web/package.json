@@ -1,7 +1,7 @@
 {
   "name": "@express-boot/starter-web",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -23,5 +23,19 @@
     "@types/jest": "^29.5.12",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.2"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trungntm/express-boot.git"
+  },
+  "author": "trungntm <trungntm.97@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/trungntm/express-boot/issues"
+  },
+  "homepage": "https://github.com/trungntm/express-boot#readme",
+  "description": "",
+  "publishConfig": {
+    "access": "public"
   }
 }
