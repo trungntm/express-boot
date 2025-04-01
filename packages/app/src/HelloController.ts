@@ -4,10 +4,12 @@ import { HelloWorldService } from './main/service/HelloWorldService';
 import { HelloWorldServiceImpl } from './main/service/HelloWorldServiceImpl';
 import { TestConfig } from './test-config';
 import { ApiOperation, ApiResponses, Tag } from '@express-boot/starter-swagger';
+import { log } from '@express-boot/starter-log';
 
 @RestController('/hello')
 @Tag('HelloWorld')
 export default class HelloController {
+
   @Inject()
   private readonly serverProperties: ServerProperties;
 
@@ -20,8 +22,10 @@ export default class HelloController {
   @Value('server.port')
   private readonly portNumber: number;
 
+  private readonly logger = log.scope('HelloController');
+
   @GetMapping('')
-  @ApiOperation('Create wallet API', 'Create Wallet API')
+  @ApiOperation('Hello world API', 'Hello world API')
   @ApiResponses(
     { status: 201, description: 'Created' },
     { status: 401, description: 'Unauthorized' },
@@ -29,9 +33,11 @@ export default class HelloController {
   )
   async sayHello() {
     console.log('serverProperties', this.serverProperties);
+    log.scope('Hello').info('serverProperties');
     console.log('portNumber', Container.get(ServerProperties).port);
     console.log('portNumber value', this.portNumber);
-    console.log('expressApp', this.expressApp);
+    log.scope('Hello').info('expressApp', this.expressApp);
+    this.logger.info('expressApp', this.expressApp);
     return this.helloWorldService.helloWorld();
   }
 }

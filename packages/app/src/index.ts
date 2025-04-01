@@ -22,23 +22,16 @@ const routes = registerRoutes(controllers);
 app.use(routes);
 
 const swaggerSpec = generateSwaggerSpec(controllers)
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 const environment = StandardEnvironment.getInstance();
-environment.setActiveProfiles(['development']);
+environment.setActiveProfiles([process.env.NODE_ENV || 'default']);
 environment.load();
-console.log('Environment created');
 
-// autoBindConfigurations(environment);
+const serverPort = environment.getProperty('server.port');
 
-// const serverProperties = getBoundConfiguration(ServerProperties);
-// console.log('Server properties bound:', serverProperties);
-
-// const appConfig = getBoundConfiguration(AppConfig);
-// console.log('App config bound:', Container.get(ServerProperties));
-
-app.listen(8080, () => {
-  log.info('App start');
+app.listen(serverPort, () => {
+  log.info(`Application started on ${serverPort} with profiles: ${environment.getActiveProfiles()}`);
 });
