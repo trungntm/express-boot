@@ -1,0 +1,23 @@
+{
+  "name": "@express-boot/starter-core",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@express-boot/starter-log": "^1.0.0",
+    "dotenv": "^16.4.7",
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21",
+    "reflect-metadata": "^0.2.1",
+    "typedi": "^0.10.0",
+    "yaml": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/lodash": "^4.17.16"
+  }
+}

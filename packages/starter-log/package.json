@@ -1,0 +1,16 @@
+{
+  "name": "@express-boot/starter-log",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "signale": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/signale": "^1.4.7"
+  }
+}
