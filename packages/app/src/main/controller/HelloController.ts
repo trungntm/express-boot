@@ -1,8 +1,8 @@
 import { GetMapping, RestController } from '@express-boot/starter-web';
 import { Container, Value, Inject, ServerProperties } from '@express-boot/starter-core';
-import { HelloWorldService } from './main/service/HelloWorldService';
-import { HelloWorldServiceImpl } from './main/service/HelloWorldServiceImpl';
-import { TestConfig } from './test-config';
+import { HelloWorldService } from '../service/HelloWorldService';
+import { HelloWorldServiceImpl } from '../service/HelloWorldServiceImpl';
+import { TestConfig } from '../../test-config';
 import { ApiOperation, ApiResponses, Tag } from '@express-boot/starter-swagger';
 import { log } from '@express-boot/starter-log';
 

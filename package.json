@@ -29,5 +29,6 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+  "author": "trungtmnguyen <trungntm.97@gmail.com>"
 }
