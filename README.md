@@ -7,10 +7,17 @@ A modern Express.js application using Yarn workspaces and TypeScript.
 ```
 express-boot/
 ├── packages/
-│   ├── app/           # Main Express application
-│   └── shared/        # Shared utilities
-├── package.json       # Root package.json
-└── tsconfig.json      # TypeScript configuration
+│   ├── app/               # Main Express application
+│   │   ├── src/           # Application source code
+│   │   │   ├── main/      # Main application logic
+│   │   │   ├── resources/ # Configuration files (e.g., application.yml)
+│   │   └── package.json   # App-specific dependencies
+│   ├── starter-core/      # Core utilities and environment management
+│   ├── starter-log/       # Logging utilities
+│   ├── starter-swagger/   # Swagger integration
+│   └── starter-web/       # Web utilities and decorators
+├── package.json           # Root package.json
+└── tsconfig.json          # TypeScript configuration
 ```
 
 ## Getting Started
@@ -41,15 +48,18 @@ express-boot/
 ## Available Scripts
 
 - `yarn dev`: Start the development server with hot reload
-- `yarn build`: Build the project
+- `yarn build:packages`: Build the packages
+- `yarn build:app`: Build the demo app
 - `yarn start`: Start the production server
 - `yarn test`: Run tests
 
 ## Features
 
 - TypeScript support
+- Modular monorepo structure with Yarn workspaces
 - Express.js framework
-- Yarn workspaces for monorepo management
-- Shared utilities package
+- Swagger integration for API documentation
+- Centralized configuration management
+- Logging utilities
 - Development server with hot reload
 - Production build setup

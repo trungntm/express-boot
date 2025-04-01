@@ -7,8 +7,8 @@
   "scripts": {
     "start": "yarn workspace @express-boot/app start",
     "dev": "yarn workspace @express-boot/app dev",
-    "build": "yarn workspace @express-boot/starter-log build && yarn workspace @express-boot/starter-web build && yarn workspace @express-boot/app build",
     "build:packages": "node ./script.js",
+    "build:app": "yarn workspace @express-boot/app build",
     "test": "yarn workspace @express-boot/app test",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
