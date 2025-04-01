@@ -1,12 +1,10 @@
-import swaggerUi from 'swagger-ui-express';
-
 import { createExpress, Express, registerRoutes } from '@express-boot/starter-web';
 import { log } from '@express-boot/starter-log';
 
 import HelloController from './main/controller/HelloController';
 import { StandardEnvironment } from '@express-boot/starter-core';
 
-import { generateSwaggerSpec } from '@express-boot/starter-swagger';
+import { generateSwaggerSpec, swaggerUi } from '@express-boot/starter-swagger';
 
 const app: Express = createExpress();
 

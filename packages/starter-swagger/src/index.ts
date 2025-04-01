@@ -1,3 +1,5 @@
+import swaggerUi from 'swagger-ui-express';
+
 export {
   ApiOperation,
   ApiModel,
@@ -7,3 +9,5 @@ export {
   Tag,
 } from './annotation';
 export { generateSwaggerSpec } from './handler';
+export * from './types';
+export { swaggerUi };

@@ -12,7 +12,6 @@ export function generateSwaggerSpec(controllers: any[]): object {
   const paths: any = {};
 
   const swaggerProperties = Container.get(SwaggerProperties);
-  console.log(swaggerProperties);
 
   controllers.forEach(controllerClass => {
     const basePath: string = '/api' + Reflect.getMetadata('controller:basePath', controllerClass);

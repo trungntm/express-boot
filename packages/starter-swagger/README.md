@@ -113,7 +113,7 @@ yarn add @express-boot/starter-swagger
 
    ```typescript
    import { createExpress } from '@express-boot/starter-web';
-   import { generateSwaggerSpec } from '@express-boot/starter-swagger';
+   import { generateSwaggerSpec, swaggerUi } from '@express-boot/starter-swagger';
    import { UserController } from './UserController';
 
    const app = createExpress();
@@ -138,7 +138,7 @@ yarn add @express-boot/starter-swagger
 
 ## Externalize configuration
 
-- This package is using `@express-boot/starter-core` which support auto-configuration via `application.yaml` file. You can pdate the swagger information as below to generate the swagger docs with proper information:
+- This package is including `@express-boot/starter-core` which support auto-configuration via `application.yaml` file. You can update the swagger information as below to generate the swagger docs with proper information:
 
 ```yaml
 swagger:
