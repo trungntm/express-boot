@@ -1,16 +1,22 @@
 app:
-  name: "Express Boot App"
-  version: "1.0.0"
+  name: 'Express Boot App'
+  version: '1.0.0'
   database:
-    host: "localhost"
+    host: 'localhost'
     port: 5432
-    username: "admin"
-    password: "password"
+    username: 'admin'
+    password: 'password'
 
 express:
   application:
-    name: "Express Application updated"
-    version: "1.0.0"
-    
+    name: 'Express Application updated'
+    version: '1.0.0'
+
 server:
   port: 8080
+
+swagger:
+  info:
+    title: 'Express Boot App API'
+    description: 'API documentation for Express Boot App'
+    version: '1.0.0'
