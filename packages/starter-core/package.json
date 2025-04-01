@@ -8,7 +8,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@express-boot/starter-log": "^1.0.0",
+    "@express-boot/starter-log": "0.0.1",
     "dotenv": "^16.4.7",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",

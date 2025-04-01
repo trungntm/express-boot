@@ -4,3 +4,6 @@ export { PutMapping } from './PutMapping';
 export { DeleteMapping } from './DeleteMapping';
 export { PatchMapping } from './PatchMapping';
 export { RestController } from './RestController';
+export { RequestParam } from './RequestParam';
+export { RequestBody } from './RequestBody';
+export { PathVariable } from './PathVariable';

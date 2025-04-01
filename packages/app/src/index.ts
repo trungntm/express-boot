@@ -14,7 +14,7 @@ const controllers = [HelloController];
 
 const routes = registerRoutes(controllers);
 
-app.use(routes);
+app.use('/api', routes);
 
 const swaggerSpec = generateSwaggerSpec(controllers);
 
