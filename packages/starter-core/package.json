@@ -1,7 +1,7 @@
 {
   "name": "@express-boot/starter-core",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -19,5 +19,19 @@
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
     "@types/lodash": "^4.17.16"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trungntm/express-boot.git"
+  },
+  "author": "trungntm <trungntm.97@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/trungntm/express-boot/issues"
+  },
+  "homepage": "https://github.com/trungntm/express-boot#readme",
+  "description": "",
+  "publishConfig": {
+    "access": "public"
   }
 }
