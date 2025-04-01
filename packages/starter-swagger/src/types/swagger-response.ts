@@ -1,5 +1,5 @@
 export interface SwaggerResponse {
-    status: number
-    description: string
-    content?: object
-  }
+  status: number;
+  description: string;
+  content?: object;
+}

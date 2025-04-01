@@ -1,1 +1,1 @@
-export { generateSwaggerSpec } from './swagger-register-handler'
+export { generateSwaggerSpec } from './swagger-register-handler';

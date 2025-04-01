@@ -9,12 +9,11 @@ import { log } from '@express-boot/starter-log';
 @RestController('/hello')
 @Tag('HelloWorld')
 export default class HelloController {
-
   @Inject()
   private readonly serverProperties: ServerProperties;
 
   @Inject()
-  private readonly expressApp: TestConfig
+  private readonly expressApp: TestConfig;
 
   @Inject(() => HelloWorldServiceImpl)
   private readonly helloWorldService: HelloWorldService;
