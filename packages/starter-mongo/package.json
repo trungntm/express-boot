@@ -1,0 +1,34 @@
+{
+  "name": "@express-boot/starter-mongo",
+  "version": "0.0.1-alpha.0",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@express-boot/starter-core": "0.0.2",
+    "@types/mongodb": "^4.0.7",
+    "mongodb": "^6.15.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trungntm/express-boot.git"
+  },
+  "author": "trungntm <trungntm.97@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/trungntm/express-boot/issues"
+  },
+  "homepage": "https://github.com/trungntm/express-boot#readme",
+  "description": "",
+  "publishConfig": {
+    "access": "public"
+  }
+}
