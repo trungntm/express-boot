@@ -1,0 +1,26 @@
+{
+  "name": "@express-boot/starter-test-action",
+  "version": "0.0.1-alpha.1",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trungntm/express-boot.git"
+  },
+  "author": "trungntm <trungntm.97@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/trungntm/express-boot/issues"
+  },
+  "homepage": "https://github.com/trungntm/express-boot#readme",
+  "description": "",
+  "publishConfig": {
+    "access": "public"
+  }
+}
