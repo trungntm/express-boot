@@ -1,34 +1,81 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-
-name: Node.js Package
+name: Publish Package
 
 on:
   push:
     branches:
       - feature/starter-test-action
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Package to publish (e.g., packages/my-package)'
+        required: true
+      version_type:
+        description: 'Version type (patch, minor, major)'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      prerelease:
+        description: 'Prerelease tag (e.g., alpha, beta, rc). Leave empty for stable release'
+        required: false
+        type: string
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: yarn install --frozen-lockfile
 
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org/
-      - run: yarn install --frozen-lockfile
-      - run: yarn build:packages
-      - run: yarn workspace @express-boot/starter-test-action publish --access public
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Configure Git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump package version
+        run: |
+          cd ${{ github.event.inputs.package }}
+          if [ -n "${{ github.event.inputs.prerelease }}" ]; then
+            yarn version prerelease --preid ${{ github.event.inputs.prerelease }}
+          else
+            yarn version ${{ github.event.inputs.version_type }}
+          fi
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Determine npm tag
+        id: npm_tag
+        run: |
+          if [ -n "${{ github.event.inputs.prerelease }}" ]; then
+            echo "tag=${{ github.event.inputs.prerelease }}" >> $GITHUB_ENV
+          else
+            echo "tag=latest" >> $GITHUB_ENV
+          fi
+
+      - name: Publish to npm
+        run: |
+          cd ${{ github.event.inputs.package }}
+          npm publish --tag ${{ env.tag }} --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # - name: Commit version change
+      #   run: |
+      #     git add ${{ github.event.inputs.package }}/package.json
+      #     git commit -m "chore(release): bump ${{ github.event.inputs.package }} version"
+      #     git push origin main
