@@ -1,6 +1,6 @@
 {
   "name": "@express-boot/starter-swagger",
-  "version": "0.0.1",
+  "version": "0.0.3-alpha.1",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@express-boot/starter-core": "0.0.1",
+    "@express-boot/starter-core": "0.0.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },

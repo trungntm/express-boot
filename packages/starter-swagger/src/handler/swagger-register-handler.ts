@@ -1,23 +1,33 @@
+import { Container } from '@express-boot/starter-core';
 import { RouteMetadata, SwaggerResponse } from '../types';
+import { SwaggerProperties } from '../properties/swagger-properties';
 
+/**
+ * Generates a Swagger specification object based on the provided controllers.
+ *
+ * @param {any[]} controllers - An array of controller classes to generate the Swagger spec from.
+ * @returns {object} The generated Swagger specification object.
+ */
 export function generateSwaggerSpec(controllers: any[]): object {
   const paths: any = {};
 
-  controllers.forEach(ControllerClass => {
-    const basePath: string = '/api' + Reflect.getMetadata('controller:basePath', ControllerClass);
+  const swaggerProperties = Container.get(SwaggerProperties);
 
-    const routes: RouteMetadata[] = Reflect.getMetadata('controller:routes', ControllerClass) || [];
+  controllers.forEach(controllerClass => {
+    const basePath: string = '/api' + Reflect.getMetadata('controller:basePath', controllerClass);
 
-    const swaggerTag = Reflect.getMetadata('swagger:tags', ControllerClass) || [];
+    const routes: RouteMetadata[] = Reflect.getMetadata('controller:routes', controllerClass) || [];
+
+    const swaggerTag = Reflect.getMetadata('swagger:tags', controllerClass) || [];
 
     routes.forEach(route => {
-      const operations = Reflect.getMetadata('swagger:operations', ControllerClass, route.handler);
-      const responses = Reflect.getMetadata('swagger:responses', ControllerClass, route.handler);
+      const operations = Reflect.getMetadata('swagger:operations', controllerClass, route.handler);
+      const responses = Reflect.getMetadata('swagger:responses', controllerClass, route.handler);
       const params =
-        Reflect.getMetadata('swagger:parameters', ControllerClass, route.handler) || [];
+        Reflect.getMetadata('swagger:parameters', controllerClass, route.handler) || [];
       const requestBody = Reflect.getMetadata(
         'swagger:requestBody',
-        ControllerClass,
+        controllerClass,
         route.handler
       );
 
@@ -52,11 +62,11 @@ export function generateSwaggerSpec(controllers: any[]): object {
   });
 
   return {
-    openapi: '3.0.0',
+    openapi: swaggerProperties.openApiVersion,
     info: {
-      title: 'API Documentation',
-      version: '1.0.0',
-      description: 'Generated Swagger documentation',
+      title: swaggerProperties.info.title,
+      version: swaggerProperties.info.version,
+      description: swaggerProperties.info.description,
     },
     components: {
       securitySchemes: {

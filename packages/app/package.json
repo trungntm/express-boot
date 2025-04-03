@@ -9,8 +9,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@express-boot/starter-web": "0.0.1",
-    "@express-boot/starter-swagger": "0.0.1"
+    "@express-boot/starter-web": "0.0.2",
+    "@express-boot/starter-swagger": "0.0.3-alpha.1",
+    "@express-boot/starter-mongo": "0.0.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
