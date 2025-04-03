@@ -26,6 +26,8 @@ yarn add @express-boot/starter-mongo
 
 ### 1. Configuration
 
+`starter-mongo` provide auto-configuration to build your express application.
+
 Add MongoDB configuration to your `application.yml` file:
 
 ```yaml
@@ -36,6 +38,12 @@ express:
       database: 'test'
       username: ''
       password: ''
+```
+
+Then, import package `@express-boot/starter-mongo` into your entrypoint:
+
+```index.ts
+import '@express-boot/starter-mongo';
 ```
 
 ### 2. Define a Model
