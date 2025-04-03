@@ -28,6 +28,7 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
       - run: yarn install --frozen-lockfile
+      - run: yarn build:packages
       - run: yarn workspace @express-boot/starter-test-action publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
