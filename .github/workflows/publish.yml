@@ -38,8 +38,7 @@ jobs:
 
       - name: Update package versions
         run: |
-          yarn workspace @express-boot/starter-swagger version ${{ github.event.inputs.version }} --no-git-tag-version
-          yarn workspace @express-boot/starter-mongo version ${{ github.event.inputs.version }} --no-git-tag-version
+          yarn workspace @express-boot/starter-mongo version --new-version ${{ github.event.inputs.version }} --no-git-tag-version
 
       - name: Publish packages
         env:
