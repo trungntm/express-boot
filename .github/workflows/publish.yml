@@ -1,0 +1,55 @@
+name: Publish Packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 1.0.0)'
+        required: true
+        type: string
+      tag:
+        description: 'NPM tag to use (e.g., latest, beta, alpha)'
+        required: true
+        type: string
+        default: 'latest'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build packages
+        run: yarn build:packages
+
+      - name: Configure git
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+
+      - name: Update package versions
+        run: |
+          yarn workspace @express-boot/starter-swagger version ${{ github.event.inputs.version }} --no-git-tag-version
+          yarn workspace @express-boot/starter-mongo version ${{ github.event.inputs.version }} --no-git-tag-version
+
+      - name: Publish packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          yarn workspace @express-boot/starter-mongo publish --tag ${{ github.event.inputs.tag }} --access public
+
+      - name: Create and push tag
+        run: |
+          git add .
+          git commit -m "chore: release v${{ github.event.inputs.version }}"
+          git tag -a v${{ github.event.inputs.version }} -m "Release v${{ github.event.inputs.version }}"
+          git push origin v${{ github.event.inputs.version }}
