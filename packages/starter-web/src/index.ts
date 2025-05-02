@@ -7,6 +7,9 @@ import {
   PutMapping,
   DeleteMapping,
   PatchMapping,
+  PathVariable,
+  RequestParam,
+  RequestBody,
 } from './web/annotation';
 import { Container, Service } from '@express-boot/starter-core';
 import { registerRoutes } from './web/handler/route-handler';
@@ -26,4 +29,7 @@ export {
   RestController,
   registerRoutes,
   createExpress,
+  RequestParam,
+  RequestBody,
+  PathVariable,
 };
